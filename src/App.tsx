@@ -23,7 +23,8 @@ function App() {
     name: '',
     email: '',
     message: '',
-    occupation: ''
+    occupation: '',
+    photo: null as File | null
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -34,11 +35,19 @@ function App() {
     }));
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setFormData(prev => ({
+      ...prev,
+      photo: file
+    }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     alert('Form submitted! (This will be connected to POST request in the future)');
-    setFormData({ name: '', email: '', message: '', occupation: '' });
+    setFormData({ name: '', email: '', message: '', occupation: '', photo: null });
   };
 
   const handleShowMore = () => {
@@ -263,6 +272,20 @@ function App() {
                               </label>
                             </div>
                           </div>
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <label htmlFor="photo" className="form-label fw-bold">Upload Your Photo</label>
+                        <input
+                          type="file"
+                          className="form-control form-control-lg"
+                          id="photo"
+                          name="photo"
+                          accept="image/*"
+                          onChange={handleFileChange}
+                        />
+                        <div className="form-text">
+                          Upload a photo (JPG, PNG, GIF). Max file size: 5MB
                         </div>
                       </div>
                       <div className="col-12">
