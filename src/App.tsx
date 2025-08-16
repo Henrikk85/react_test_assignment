@@ -22,7 +22,8 @@ function App() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    occupation: ''
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -37,7 +38,7 @@ function App() {
     e.preventDefault();
     console.log('Form submitted:', formData);
     alert('Form submitted! (This will be connected to POST request in the future)');
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', message: '', occupation: '' });
   };
 
   const handleShowMore = () => {
@@ -190,6 +191,79 @@ function App() {
                           required
                           placeholder="Enter your email"
                         />
+                      </div>
+                      <div className="col-12">
+                        <label className="form-label fw-bold">Occupation</label>
+                        <div className="row g-2">
+                          <div className="col-md-6">
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="occupation"
+                                id="frontend"
+                                value="front-end developer"
+                                checked={formData.occupation === 'front-end developer'}
+                                onChange={handleInputChange}
+                                required
+                              />
+                              <label className="form-check-label" htmlFor="frontend">
+                                Front-end Developer
+                              </label>
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="occupation"
+                                id="backend"
+                                value="back-end developer"
+                                checked={formData.occupation === 'back-end developer'}
+                                onChange={handleInputChange}
+                                required
+                              />
+                              <label className="form-check-label" htmlFor="backend">
+                                Back-end Developer
+                              </label>
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="occupation"
+                                id="designer"
+                                value="designer"
+                                checked={formData.occupation === 'designer'}
+                                onChange={handleInputChange}
+                                required
+                              />
+                              <label className="form-check-label" htmlFor="designer">
+                                Designer
+                              </label>
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="occupation"
+                                id="tester"
+                                value="tester"
+                                checked={formData.occupation === 'tester'}
+                                onChange={handleInputChange}
+                                required
+                              />
+                              <label className="form-check-label" htmlFor="tester">
+                                Tester
+                              </label>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div className="col-12">
                         <label htmlFor="message" className="form-label fw-bold">Message</label>
