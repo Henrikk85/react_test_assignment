@@ -2,14 +2,22 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [users] = useState([
+  const [allUsers] = useState([
     { id: 1, name: 'John Doe', contact: '+1 (555) 123-4567', image: 'https://via.placeholder.com/150/0066cc/ffffff?text=JD' },
     { id: 2, name: 'Jane Smith', contact: '+1 (555) 234-5678', image: 'https://via.placeholder.com/150/28a745/ffffff?text=JS' },
     { id: 3, name: 'Mike Johnson', contact: '+1 (555) 345-6789', image: 'https://via.placeholder.com/150/dc3545/ffffff?text=MJ' },
     { id: 4, name: 'Sarah Wilson', contact: '+1 (555) 456-7890', image: 'https://via.placeholder.com/150/ffc107/000000?text=SW' },
     { id: 5, name: 'David Brown', contact: '+1 (555) 567-8901', image: 'https://via.placeholder.com/150/6f42c1/ffffff?text=DB' },
-    { id: 6, name: 'Lisa Davis', contact: '+1 (555) 678-9012', image: 'https://via.placeholder.com/150/fd7e14/ffffff?text=LD' }
+    { id: 6, name: 'Lisa Davis', contact: '+1 (555) 678-9012', image: 'https://via.placeholder.com/150/fd7e14/ffffff?text=LD' },
+    { id: 7, name: 'Alex Turner', contact: '+1 (555) 789-0123', image: 'https://via.placeholder.com/150/17a2b8/ffffff?text=AT' },
+    { id: 8, name: 'Emma Watson', contact: '+1 (555) 890-1234', image: 'https://via.placeholder.com/150/e83e8c/ffffff?text=EW' },
+    { id: 9, name: 'Chris Evans', contact: '+1 (555) 901-2345', image: 'https://via.placeholder.com/150/20c997/ffffff?text=CE' },
+    { id: 10, name: 'Sophia Lee', contact: '+1 (555) 012-3456', image: 'https://via.placeholder.com/150/6610f2/ffffff?text=SL' },
+    { id: 11, name: 'Ryan Garcia', contact: '+1 (555) 123-4567', image: 'https://via.placeholder.com/150/fd7e14/ffffff?text=RG' },
+    { id: 12, name: 'Olivia Martinez', contact: '+1 (555) 234-5678', image: 'https://via.placeholder.com/150/198754/ffffff?text=OM' }
   ]);
+
+  const [visibleUsersCount, setVisibleUsersCount] = useState(6);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -33,9 +41,13 @@ function App() {
   };
 
   const handleShowMore = () => {
-    console.log('Show more clicked - will implement GET request in the future');
-    alert('Show More clicked! (This will load more users via GET request in the future)');
+    const newCount = Math.min(visibleUsersCount + 3, allUsers.length);
+    setVisibleUsersCount(newCount);
+    console.log(`Showing ${newCount} users out of ${allUsers.length} total users`);
   };
+
+  const visibleUsers = allUsers.slice(0, visibleUsersCount);
+  const showMoreButton = visibleUsersCount < allUsers.length;
 
   return (
     <div className="App">
@@ -102,7 +114,7 @@ function App() {
           </div>
           
           <div className="row g-4">
-            {users.map((user) => (
+            {visibleUsers.map((user) => (
               <div key={user.id} className="col-lg-4 col-md-6">
                 <div className="card h-100 shadow-sm user-card">
                   <div className="card-body text-center p-4">
@@ -124,16 +136,18 @@ function App() {
             ))}
           </div>
           
-          <div className="row mt-5">
-            <div className="col-12 text-center">
-              <button 
-                className="btn btn-outline-primary btn-lg px-5"
-                onClick={handleShowMore}
-              >
-                Show More Users
-              </button>
+          {showMoreButton && (
+            <div className="row mt-5">
+              <div className="col-12 text-center">
+                <button 
+                  className="btn btn-outline-primary btn-lg px-5"
+                  onClick={handleShowMore}
+                >
+                  Show More Users ({allUsers.length - visibleUsersCount} remaining)
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
