@@ -39,6 +39,36 @@ function App() {
 
   return (
     <div className="App">
+      {/* Top Navigation Menu */}
+      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div className="container">
+          <a className="navbar-brand fw-bold fs-3 text-primary" href="#">
+            <i className="bi bi-hexagon-fill me-2"></i>
+            MyPlatform
+          </a>
+          
+          <button 
+            className="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <div className="navbar-nav ms-auto">
+              <a className="nav-link fw-semibold me-3" href="#signup">
+                Sign Up
+              </a>
+              <a className="nav-link fw-semibold" href="#members">
+                Members
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       {/* Block 1: Full-screen Landing Page */}
       <section className="hero-section">
         <div className="hero-content">
